@@ -12,7 +12,7 @@ export default function ThemeToggle() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <div className="flex items-center rounded-full border border-border bg-card p-1">
+    <div className="flex items-center rounded-full border border-border bg-card p-1 shrink-0">
       {options.map((option) => {
         const Icon = option.icon
         const active = theme === option.value
@@ -22,7 +22,7 @@ export default function ThemeToggle() {
             key={option.value}
             type="button"
             onClick={() => setTheme(option.value)}
-            className={`inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs transition-colors ${
+            className={`inline-flex items-center justify-center rounded-full px-2.5 py-2 sm:px-3 text-xs transition-colors ${
               active
                 ? "bg-foreground text-background"
                 : "text-muted-foreground hover:text-foreground"
@@ -31,7 +31,6 @@ export default function ThemeToggle() {
             title={option.label}
           >
             <Icon className="w-4 h-4" />
-            <span className="hidden lg:inline">{option.label}</span>
           </button>
         )
       })}
