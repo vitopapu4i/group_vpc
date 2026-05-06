@@ -17,11 +17,14 @@ const advantages = [
   "Возможность использования оборудования любых производителей",
 ]
 
-const offices = ["Москва", "Прага", "Астана", "Дубай", "Минск"]
+const offices = [
+  "Москва — Ленинский пр-кт, д. 146",
+  "Санкт-Петербург — Кузнецовская 52к2",
+]
 
 export default function AboutNew() {
   return (
-    <section id="about" className="py-16 md:py-24 bg-muted/30">
+    <section id="about" className="reveal py-16 md:py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-start">
           <div>
@@ -50,7 +53,7 @@ export default function AboutNew() {
             <div className="grid sm:grid-cols-3 gap-4 mb-8">
               <div className="rounded-2xl border border-border bg-card p-5">
                 <Building2 className="w-6 h-6 text-primary mb-3" />
-                <p className="text-2xl font-bold text-foreground mb-1">5</p>
+                <p className="text-2xl font-bold text-foreground mb-1">2</p>
                 <p className="text-sm text-muted-foreground">
                   Офисов и представительств
                 </p>
@@ -123,9 +126,10 @@ export default function AboutNew() {
               </div>
 
               <p className="text-sm text-muted-foreground leading-7 mt-5">
-                Компания ведёт проекты и поддерживает клиентов на территории
-                Европы и СНГ, включая поставку решений, инженерную экспертизу и
-                сопровождение внедрения.
+                Компания ведёт проекты и поддерживает клиентов из офисов в Москве
+                и Санкт-Петербурге, обеспечивая инженерную экспертизу, проектную
+                поддержку и сопровождение внедрения.
+                
               </p>
             </div>
           </div>

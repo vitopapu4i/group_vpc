@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
+import RevealProvider from "@/components/reveal-provider"
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -25,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="ru" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <RevealProvider />
+          {children}
+          </ThemeProvider>
         <Analytics />
       </body>
     </html>

@@ -18,16 +18,10 @@ import PageHero from "@/components/page-hero"
 
 const mainServices = [
   {
-    title: "Поставка телекоммуникационного оборудования",
+    title: "Поставка телекоммуникационных систем",
     description:
-      "Подбор и поставка оборудования для indoor coverage, DAS / ADAS, ретрансляторов, антенн, измерительных комплексов и сопутствующей инфраструктуры.",
+      "Подбор и поставка комплексных решений для indoor coverage, DAS / ADAS, M-DOTS, TETRA, репитерных систем и компонентов АФС под требования объекта.",
     icon: Boxes,
-  },
-  {
-    title: "Поставка измерительного оборудования",
-    description:
-      "Решения для анализа покрытия, измерения параметров сети, диагностики антенно-фидерных систем и сопровождения эксплуатации.",
-    icon: ScanLine,
   },
   {
     title: "Планирование систем связи любой сложности",
@@ -40,6 +34,12 @@ const mainServices = [
     description:
       "Полный цикл внедрения: от выбора архитектуры и поставки оборудования до запуска и подтверждения параметров системы.",
     icon: Wrench,
+  },
+  {
+    title: "Радиоизмерения и обследование",
+    description:
+      "Полевые измерения покрытия и качества связи до и после внедрения системы с использованием профессионального измерительного оборудования.",
+    icon: ScanLine,
   },
   {
     title: "Аудит существующих систем связи",
@@ -65,7 +65,7 @@ const planningStages = [
   {
     title: "Оценка бюджета",
     description:
-      "Оперативная подготовка оценки затрат на оборудование и работы для понимания реализуемости и окупаемости проекта.",
+      "Оперативная подготовка оценки затрат на оборудование и работы для понимания реализуемости проекта.",
     icon: Calculator,
   },
   {
@@ -77,7 +77,7 @@ const planningStages = [
   {
     title: "Разработка решения",
     description:
-      "Точные расчёты с учётом особенностей объекта и требований технического задания в рамках согласованного бюджета.",
+      "Точные расчёты с учётом особенностей объекта и требований технического задания.",
     icon: Radio,
   },
   {
@@ -95,7 +95,7 @@ const planningStages = [
   {
     title: "Документация",
     description:
-      "Подготовка описания решения, входных данных для проектирования и необходимых материалов для согласования.",
+      "Подготовка описания решения, входных данных для проектирования и материалов для согласования.",
     icon: FileText,
   },
 ]
@@ -109,6 +109,14 @@ const industries = [
   "Железнодорожный транспорт",
 ]
 
+const measurementEquipment = [
+  "Профессиональные анализаторы покрытия",
+  "Сканеры радиосигнала",
+  "Измерительные комплексы для indoor coverage",
+  "Оборудование для проверки параметров DAS / ADAS",
+  "Средства диагностики антенно-фидерных систем",
+]
+
 export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -116,7 +124,7 @@ export default function ServicesPage() {
 
       <PageHero
         title="Услуги"
-        description="Поставка оборудования, проектирование систем связи, измерения, аудит и реализация телеком-проектов для сложных инфраструктурных объектов."
+        description="Проектирование систем связи, радиоизмерения, аудит, поставка системных решений и реализация телеком-проектов для сложных инфраструктурных объектов."
       />
 
       <section className="py-16 md:py-20 bg-card border-b border-border">
@@ -126,14 +134,19 @@ export default function ServicesPage() {
               <p className="text-3xl font-bold text-foreground mb-2">6</p>
               <p className="text-sm text-muted-foreground">Ключевых направлений</p>
             </div>
+
             <div className="rounded-2xl border border-border bg-background p-6">
               <p className="text-3xl font-bold text-foreground mb-2">7</p>
               <p className="text-sm text-muted-foreground">Этапов проработки решения</p>
             </div>
+
             <div className="rounded-2xl border border-border bg-background p-6">
-              <p className="text-3xl font-bold text-foreground mb-2">Indoor / Transport</p>
+              <p className="text-3xl font-bold text-foreground mb-2">
+                Indoor / Transport
+              </p>
               <p className="text-sm text-muted-foreground">Фокус реализации</p>
             </div>
+
             <div className="rounded-2xl border border-border bg-background p-6">
               <p className="text-3xl font-bold text-foreground mb-2">Telecom</p>
               <p className="text-sm text-muted-foreground">Инженерная специализация</p>
@@ -148,13 +161,16 @@ export default function ServicesPage() {
             <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
               Основные направления
             </p>
+
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               Что делает VPC
             </h2>
+
             <div className="w-12 h-0.5 bg-primary mb-4" />
+
             <p className="text-muted-foreground max-w-3xl leading-7">
               Компания выполняет полный цикл инженерных работ по системам связи:
-              от выбора технологии и поставки оборудования до внедрения,
+              от выбора технологии и поставки системного решения до внедрения,
               измерений и сопровождения эксплуатации.
             </p>
           </div>
@@ -192,10 +208,13 @@ export default function ServicesPage() {
             <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
               Проработка решения
             </p>
+
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
               Этапы работы по планированию систем связи
             </h2>
+
             <div className="w-12 h-0.5 bg-primary mb-4" />
+
             <p className="text-muted-foreground max-w-3xl leading-7">
               От обследования объекта и оценки бюджета до измерений и выпуска
               документации — каждый этап направлен на достижение требуемых
@@ -216,6 +235,7 @@ export default function ServicesPage() {
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
+
                     <span className="text-sm font-medium text-muted-foreground">
                       {String(index + 1).padStart(2, "0")}
                     </span>
@@ -242,10 +262,13 @@ export default function ServicesPage() {
               <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
                 Типы объектов
               </p>
+
               <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
                 Где применяются решения VPC
               </h2>
+
               <div className="w-12 h-0.5 bg-primary mb-5" />
+
               <p className="text-muted-foreground leading-7 max-w-2xl">
                 Услуги компании ориентированы на объекты со сложной архитектурой,
                 высокой плотностью пользователей, транспортной спецификой и
@@ -269,17 +292,59 @@ export default function ServicesPage() {
                 <p className="text-sm font-medium text-foreground mb-2">
                   Нужна консультация по объекту?
                 </p>
+
                 <p className="text-sm text-muted-foreground leading-7 mb-4">
                   Подберём формат работ: аудит, проектирование, измерения,
-                  оборудование или реализация под ключ.
+                  системное решение или реализация под ключ.
                 </p>
 
-                <Link href="/request">
-                  <Button className="bg-primary hover:bg-primary/90 text-white">
+                <Button asChild className="bg-primary hover:bg-primary/90 text-white">
+                  <Link href="/request">
                     Оставить заявку
                     <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-24 bg-card">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-10 lg:gap-14 items-start">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
+                Радиоизмерения
+              </p>
+
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Измерения выполняются профессиональным оборудованием
+              </h2>
+
+              <div className="w-12 h-0.5 bg-primary mb-5" />
+
+              <p className="text-muted-foreground leading-7">
+                VPC не продаёт измерительное оборудование отдельно. Мы используем
+                его в рамках услуг по обследованию, радиоизмерениям, аудиту и
+                проверке качества покрытия на объектах заказчика.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border border-border bg-background p-6 md:p-8">
+              <h3 className="text-xl font-semibold text-foreground mb-5">
+                Что используем в работе
+              </h3>
+
+              <div className="space-y-4">
+                {measurementEquipment.map((item) => (
+                  <div key={item} className="flex items-start gap-3">
+                    <ScanLine className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                    <p className="text-sm text-muted-foreground leading-7">
+                      {item}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

@@ -24,11 +24,15 @@ const advantages = [
 ]
 
 const offices = [
-  { city: "Москва", description: "Основной офис и управление проектами" },
-  { city: "Прага", description: "Присутствие в Европе" },
-  { city: "Астана", description: "Проекты и поддержка в регионе" },
-  { city: "Дубай", description: "Международное присутствие" },
-  { city: "Минск", description: "Локальная экспертиза и сопровождение" },
+  {
+    city: "Москва",
+    description:
+      "119526, г. Москва, вн.тер.г. Муниципальный округ Тропарево-Никулино, пр-кт Ленинский, д. 146",
+  },
+  {
+    city: "Санкт-Петербург",
+    description: "Кузнецовская 52к2",
+  },
 ]
 
 const directions = [
@@ -76,7 +80,7 @@ export default function AboutPage() {
           <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
             <div className="rounded-2xl border border-border bg-background p-6">
               <Building2 className="w-6 h-6 text-primary mb-3" />
-              <p className="text-3xl font-bold text-foreground mb-2">5</p>
+              <p className="text-3xl font-bold text-foreground mb-2">2</p>
               <p className="text-sm text-muted-foreground">Офисов и представительств</p>
             </div>
 
