@@ -23,6 +23,26 @@ export default async function ProjectDetailPage({
     notFound()
   }
 
+  const details = project.details ?? {
+    intro:
+      project.description ||
+      "Проект VPC по реализации системы связи для сложного инфраструктурного объекта.",
+    task:
+      "Обеспечить стабильное покрытие и качество связи с учётом особенностей объекта, требований эксплуатации и высокой нагрузки.",
+    solution:
+      "Была подобрана инженерная архитектура системы связи, выполнено планирование, подбор компонентов и сопровождение реализации.",
+    result:
+      "Решение позволило обеспечить требуемые параметры покрытия и подготовить объект к дальнейшему развитию системы связи.",
+    works: [
+      "Анализ объекта и требований к системе связи",
+      "Подбор архитектуры решения",
+      "Проектирование и радиопланирование",
+      "Подбор системных компонентов",
+      "Проверка параметров покрытия",
+      "Сопровождение проекта",
+    ],
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <HeaderNew />
@@ -45,11 +65,9 @@ export default async function ProjectDetailPage({
             {project.title}
           </h1>
 
-          {project.description && (
-            <p className="text-lg text-primary-foreground/85 max-w-3xl leading-8">
-              {project.description}
-            </p>
-          )}
+          <p className="text-lg text-primary-foreground/85 max-w-3xl leading-8">
+            {details.intro}
+          </p>
         </div>
       </section>
 
@@ -58,7 +76,7 @@ export default async function ProjectDetailPage({
           <div className="grid lg:grid-cols-[1fr_0.9fr] gap-10 lg:gap-14 items-start">
             <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-border bg-card">
               <Image
-                src={project.image}
+                src={project.image || "/placeholder.svg"}
                 alt={project.title}
                 fill
                 className="object-cover"
@@ -96,20 +114,19 @@ export default async function ProjectDetailPage({
             </div>
           </div>
 
+          <section className="mt-12 grid lg:grid-cols-3 gap-6">
+            <TextCard title="Задача" text={details.task} />
+            <TextCard title="Решение" text={details.solution} />
+            <TextCard title="Результат" text={details.result} />
+          </section>
+
           <section className="mt-12 bg-card rounded-3xl border border-border p-6 md:p-8">
             <h2 className="text-2xl font-semibold text-foreground mb-6">
-              Что было реализовано
+              Что было выполнено
             </h2>
 
             <div className="grid md:grid-cols-2 gap-5">
-              {[
-                "Анализ объекта и требований к системе связи",
-                "Подбор архитектуры решения под инфраструктуру объекта",
-                "Проектирование и радиопланирование",
-                "Поставка и интеграция системных компонентов",
-                "Проверка параметров покрытия и качества связи",
-                "Сопровождение проекта до ввода в эксплуатацию",
-              ].map((item) => (
+              {details.works.map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
                   <p className="text-sm text-muted-foreground leading-7">
@@ -155,6 +172,15 @@ function InfoRow({ label, value }: { label: string; value: string }) {
       <span className="text-sm font-medium text-foreground sm:text-right">
         {value}
       </span>
+    </div>
+  )
+}
+
+function TextCard({ title, text }: { title: string; text: string }) {
+  return (
+    <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
+      <h2 className="text-xl font-semibold text-foreground mb-4">{title}</h2>
+      <p className="text-sm text-muted-foreground leading-7">{text}</p>
     </div>
   )
 }

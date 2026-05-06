@@ -7,6 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { company } from "@/data/company"
 
 const advantages = [
   "Возможность предоставления услуг на территории Европы и СНГ",
@@ -17,10 +18,7 @@ const advantages = [
   "Возможность использования оборудования любых производителей",
 ]
 
-const offices = [
-  "Москва — Ленинский пр-кт, д. 146",
-  "Санкт-Петербург — Кузнецовская 52к2",
-]
+
 
 export default function AboutNew() {
   return (
@@ -115,12 +113,12 @@ export default function AboutNew() {
               </h3>
 
               <div className="flex flex-wrap gap-3">
-                {offices.map((office) => (
+                {company.offices.map((office) => (
                   <span
-                    key={office}
+                    key={office.city}
                     className="px-4 py-2 rounded-full border border-border bg-background text-sm text-foreground"
                   >
-                    {office}
+                    {office.city} — {office.shortAddress}
                   </span>
                 ))}
               </div>

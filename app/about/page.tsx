@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button"
 import HeaderNew from "@/components/header-new"
 import FooterNew from "@/components/footer-new"
 import PageHero from "@/components/page-hero"
+import { company } from "@/data/company"
 
 const advantages = [
   "Возможность предоставления услуг на территории Европы и СНГ",
@@ -23,17 +24,7 @@ const advantages = [
   "Возможность предоставления быстрой оценки решений",
 ]
 
-const offices = [
-  {
-    city: "Москва",
-    description:
-      "119526, г. Москва, вн.тер.г. Муниципальный округ Тропарево-Никулино, пр-кт Ленинский, д. 146",
-  },
-  {
-    city: "Санкт-Петербург",
-    description: "Кузнецовская 52к2",
-  },
-]
+
 
 const directions = [
   "Поставка телекоммуникационного оборудования",
@@ -216,7 +207,7 @@ export default function AboutPage() {
             </div>
 
             <div className="grid sm:grid-cols-2 gap-5">
-              {offices.map((office) => (
+              {company.offices.map((office) => (
                 <div
                   key={office.city}
                   className="rounded-2xl border border-border bg-card p-6"
@@ -230,7 +221,7 @@ export default function AboutPage() {
                         {office.city}
                       </h3>
                       <p className="text-sm text-muted-foreground leading-6">
-                        {office.description}
+                        {office.address}
                       </p>
                     </div>
                   </div>

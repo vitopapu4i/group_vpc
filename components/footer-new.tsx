@@ -10,18 +10,7 @@ const companyLinks = [
   { label: "Контакты", href: "/request" },
 ]
 
-const offices = [
-  {
-    city: "Москва",
-    address: "119526, г. Москва, Ленинский пр-кт, д. 146",
-    map: "https://yandex.ru/maps/?text=Москва Ленинский проспект 146",
-  },
-  {
-    city: "Санкт-Петербург",
-    address: "Кузнецовская 52к2",
-    map: "https://yandex.ru/maps/?text=Санкт-Петербург Кузнецовская 52к2",
-  },
-]
+
 
 export default function FooterNew() {
   return (
@@ -98,10 +87,10 @@ export default function FooterNew() {
             </h3>
 
             <div className="space-y-4">
-              {offices.map((office) => (
+              {company.offices.map((office) => (
                 <a
                   key={office.city}
-                  href={office.map}
+                  href={office.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-start gap-3 rounded-xl border border-border bg-background p-4 hover:border-primary/40 transition"

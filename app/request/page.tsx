@@ -5,10 +5,12 @@ import Link from "next/link"
 import {
   ArrowRight,
   Building2,
-  Phone,
+  CheckCircle2,
+  Clock3,
   Mail,
   MapPin,
-  CheckCircle2,
+  Phone,
+  Send,
 } from "lucide-react"
 import HeaderNew from "@/components/header-new"
 import FooterNew from "@/components/footer-new"
@@ -17,14 +19,18 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { company } from "@/data/company"
+
+
 
 const requestTypes = [
-  "Поставка оборудования",
-  "Планирование систем связи",
-  "Измерения и радиообследование",
-  "Аудит существующей системы",
+  "Системы M-DOTS",
+  "Репитерные решения",
+  "Проектирование дизайн-плана",
+  "Радиоизмерения",
+  "Аудит системы связи",
+  "Подбор компонентов АФС",
   "Реализация проекта под ключ",
-  "Обслуживание системы",
 ]
 
 const objectTypes = [
@@ -94,7 +100,7 @@ export default function RequestPage() {
     if (!validateForm()) return
 
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1200))
+    await new Promise((resolve) => setTimeout(resolve, 1000))
     setIsSubmitting(false)
     setIsSubmitted(true)
   }
@@ -104,43 +110,58 @@ export default function RequestPage() {
       <HeaderNew />
 
       <PageHero
-        title="Оставить заявку"
-        description="Опишите объект и задачу — мы поможем с выбором архитектуры решения, оборудования и формата реализации проекта."
+        title="Контакты"
+        description="Свяжитесь с VPC для обсуждения проекта, подбора системного решения, радиоизмерений, аудита или проектирования систем связи."
       />
 
       <section className="py-16 md:py-20 bg-card border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <Building2 className="w-6 h-6 text-primary mb-3" />
-              <p className="text-lg font-semibold text-foreground mb-1">B2B формат</p>
-              <p className="text-sm text-muted-foreground leading-7">
-                Работаем с корпоративными и инфраструктурными объектами
+          <div className="grid lg:grid-cols-[0.95fr_1.05fr] gap-10 lg:gap-14 items-start">
+            <div>
+              <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
+                Офисы
+              </p>
+
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                Работаем из Москвы и Санкт-Петербурга
+              </h2>
+
+              <div className="w-12 h-0.5 bg-primary mb-5" />
+
+              <p className="text-muted-foreground leading-7 max-w-2xl">
+                Обсудим объект, требования к покрытию, формат работ и подберём
+                подходящее решение: от обследования и дизайн-плана до поставки
+                системы и сопровождения внедрения.
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <Phone className="w-6 h-6 text-primary mb-3" />
-              <p className="text-lg font-semibold text-foreground mb-1">Быстрый контакт</p>
-              <p className="text-sm text-muted-foreground leading-7">
-                Свяжемся для уточнения параметров проекта
-              </p>
-            </div>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {company.offices.map((office) => (
+                <a
+                  key={office.city}
+                  href={office.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-3xl border border-border bg-background p-6 hover:border-primary/40 hover:shadow-lg transition-all"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
+                    <MapPin className="w-6 h-6 text-primary" />
+                  </div>
 
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <CheckCircle2 className="w-6 h-6 text-primary mb-3" />
-              <p className="text-lg font-semibold text-foreground mb-1">Инженерный подход</p>
-              <p className="text-sm text-muted-foreground leading-7">
-                Подберём решение под ваш объект и ограничения
-              </p>
-            </div>
+                  <h3 className="text-xl font-semibold text-foreground mb-3">
+                    {office.city}
+                  </h3>
 
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <MapPin className="w-6 h-6 text-primary mb-3" />
-              <p className="text-lg font-semibold text-foreground mb-1">Сложные объекты</p>
-              <p className="text-sm text-muted-foreground leading-7">
-                Аэропорты, метро, стадионы, ЦОД, транспорт
-              </p>
+                  <p className="text-sm text-muted-foreground leading-7 mb-5">
+                    {office.address}
+                  </p>
+
+                  <span className="inline-flex items-center text-sm font-medium text-primary">
+                    Открыть в Яндекс Картах
+                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -148,68 +169,69 @@ export default function RequestPage() {
 
       <main className="py-16 md:py-24 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-start">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
-                Запрос
-              </p>
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-14 items-start">
+            <div className="space-y-6">
+              <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
+                <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
+                  Быстрая связь
+                </p>
 
-              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                Расскажите о проекте
-              </h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  Напишите или позвоните нам
+                </h2>
 
-              <div className="w-12 h-0.5 bg-primary mb-5" />
+                <div className="w-12 h-0.5 bg-primary mb-6" />
 
-              <p className="text-muted-foreground leading-7 mb-6">
-                Укажите тип объекта, интересующее направление и кратко опишите
-                задачу. Это поможет быстрее понять объём работ и подготовить
-                подходящий формат взаимодействия.
-              </p>
+                <div className="space-y-5">
+                  <ContactItem
+                    icon={Phone}
+                    label="Телефон"
+                    value={company.phoneDisplay}
+                    href={company.phoneHref}
+                  />
+
+                  <ContactItem
+                    icon={Mail}
+                    label="Email"
+                    value={company.email}
+                    href={company.emailHref}
+                  />
+
+                  <ContactItem
+                    icon={Clock3}
+                    label="Формат ответа"
+                    value="Свяжемся для уточнения параметров проекта"
+                  />
+                </div>
+              </div>
 
               <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
-                <h3 className="text-xl font-semibold text-foreground mb-5">
-                  Что можно указать в запросе
-                </h3>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                    <Building2 className="w-6 h-6 text-primary" />
+                  </div>
 
-                <div className="space-y-4">
-                  {[
-                    "Тип объекта и его назначение",
-                    "Город или регион реализации",
-                    "Проблема текущего покрытия или задача нового внедрения",
-                    "Нужна поставка оборудования, аудит, проектирование или реализация",
-                    "Ограничения по срокам, бюджету или инфраструктуре",
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
-                      <p className="text-sm text-muted-foreground leading-7">{item}</p>
+                  <div>
+                    <h3 className="text-xl font-semibold text-foreground mb-3">
+                      Какие задачи можно обсудить
+                    </h3>
+
+                    <div className="space-y-3">
+                      {[
+                        "M-DOTS, TETRA и репитерные решения",
+                        "Проектирование дизайн-планов",
+                        "Радиоизмерения и аудит систем связи",
+                        "Подбор компонентов АФС под требования объекта",
+                        "Реализация проекта под ключ",
+                      ].map((item) => (
+                        <div key={item} className="flex items-start gap-3">
+                          <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 shrink-0" />
+                          <p className="text-sm text-muted-foreground leading-7">
+                            {item}
+                          </p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-
-                <div className="mt-8 rounded-2xl bg-primary/5 border border-primary/15 p-5">
-                  <p className="text-sm font-medium text-foreground mb-2">
-                    Предпочитаете связаться напрямую?
-                  </p>
-
-                  <div className="space-y-2 text-sm text-muted-foreground">
-                    <p>
-                      Телефон:{" "}
-                      <a
-                        href="tel:+79811046951"
-                        className="text-foreground hover:text-primary transition-colors"
-                      >
-                        +7 981 104 69 51
-                      </a>
-                    </p>
-                    <p>
-                      Email:{" "}
-                      <a
-                        href="mailto:info@groupvpc.com"
-                        className="text-foreground hover:text-primary transition-colors"
-                      >
-                        info@groupvpc.com
-                      </a>
-                    </p>
                   </div>
                 </div>
               </div>
@@ -218,149 +240,155 @@ export default function RequestPage() {
             <div className="rounded-3xl border border-border bg-card p-6 md:p-8">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    Форма заявки
-                  </h3>
+                  <div>
+                    <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground mb-3">
+                      Заявка
+                    </p>
 
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="company">Компания *</Label>
-                      <Input
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="Название компании"
-                        className={errors.company ? "border-red-500" : ""}
-                      />
-                      {errors.company && (
-                        <p className="text-sm text-red-500">{errors.company}</p>
-                      )}
-                    </div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                      Расскажите о проекте
+                    </h2>
 
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Контактное лицо *</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Имя и должность"
-                        className={errors.name ? "border-red-500" : ""}
-                      />
-                      {errors.name && (
-                        <p className="text-sm text-red-500">{errors.name}</p>
-                      )}
-                    </div>
+                    <p className="text-sm text-muted-foreground leading-7">
+                      Укажите тип объекта, интересующее направление и кратко
+                      опишите задачу. Это поможет быстрее подготовить подходящий
+                      формат взаимодействия.
+                    </p>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Телефон *</Label>
-                      <Input
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="+7 ..."
-                        className={errors.phone ? "border-red-500" : ""}
-                      />
-                      {errors.phone && (
-                        <p className="text-sm text-red-500">{errors.phone}</p>
-                      )}
-                    </div>
+                    <FormField
+                      label="Компания *"
+                      error={errors.company}
+                      input={
+                        <Input
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          placeholder="Название компании"
+                          className={errors.company ? "border-red-500" : ""}
+                        />
+                      }
+                    />
 
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="name@company.com"
-                        className={errors.email ? "border-red-500" : ""}
-                      />
-                      {errors.email && (
-                        <p className="text-sm text-red-500">{errors.email}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="requestType">Тип запроса *</Label>
-                      <select
-                        id="requestType"
-                        name="requestType"
-                        value={formData.requestType}
-                        onChange={handleChange}
-                        className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm text-foreground ${
-                          errors.requestType ? "border-red-500" : "border-input"
-                        }`}
-                      >
-                        <option value="">Выберите направление</option>
-                        {requestTypes.map((item) => (
-                          <option key={item} value={item}>
-                            {item}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.requestType && (
-                        <p className="text-sm text-red-500">{errors.requestType}</p>
-                      )}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="objectType">Тип объекта *</Label>
-                      <select
-                        id="objectType"
-                        name="objectType"
-                        value={formData.objectType}
-                        onChange={handleChange}
-                        className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm text-foreground ${
-                          errors.objectType ? "border-red-500" : "border-input"
-                        }`}
-                      >
-                        <option value="">Выберите объект</option>
-                        {objectTypes.map((item) => (
-                          <option key={item} value={item}>
-                            {item}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.objectType && (
-                        <p className="text-sm text-red-500">{errors.objectType}</p>
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="city">Город / регион</Label>
-                    <Input
-                      id="city"
-                      name="city"
-                      value={formData.city}
-                      onChange={handleChange}
-                      placeholder="Москва, Санкт-Петербург, Минск и т.д."
+                    <FormField
+                      label="Контактное лицо *"
+                      error={errors.name}
+                      input={
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="Имя и должность"
+                          className={errors.name ? "border-red-500" : ""}
+                        />
+                      }
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Описание задачи *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      rows={7}
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Опишите объект, текущую ситуацию, задачи по покрытию, интересующие услуги, ожидаемые сроки или ограничения."
-                      className={errors.message ? "border-red-500" : ""}
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <FormField
+                      label="Телефон *"
+                      error={errors.phone}
+                      input={
+                        <Input
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="+7 ..."
+                          className={errors.phone ? "border-red-500" : ""}
+                        />
+                      }
                     />
-                    {errors.message && (
-                      <p className="text-sm text-red-500">{errors.message}</p>
-                    )}
+
+                    <FormField
+                      label="Email *"
+                      error={errors.email}
+                      input={
+                        <Input
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="name@company.com"
+                          className={errors.email ? "border-red-500" : ""}
+                        />
+                      }
+                    />
                   </div>
+
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <FormField
+                      label="Тип запроса *"
+                      error={errors.requestType}
+                      input={
+                        <select
+                          name="requestType"
+                          value={formData.requestType}
+                          onChange={handleChange}
+                          className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm text-foreground ${
+                            errors.requestType ? "border-red-500" : "border-input"
+                          }`}
+                        >
+                          <option value="">Выберите направление</option>
+                          {requestTypes.map((item) => (
+                            <option key={item} value={item}>
+                              {item}
+                            </option>
+                          ))}
+                        </select>
+                      }
+                    />
+
+                    <FormField
+                      label="Тип объекта *"
+                      error={errors.objectType}
+                      input={
+                        <select
+                          name="objectType"
+                          value={formData.objectType}
+                          onChange={handleChange}
+                          className={`flex h-10 w-full rounded-md border bg-background px-3 py-2 text-sm text-foreground ${
+                            errors.objectType ? "border-red-500" : "border-input"
+                          }`}
+                        >
+                          <option value="">Выберите объект</option>
+                          {objectTypes.map((item) => (
+                            <option key={item} value={item}>
+                              {item}
+                            </option>
+                          ))}
+                        </select>
+                      }
+                    />
+                  </div>
+
+                  <FormField
+                    label="Город / регион"
+                    input={
+                      <Input
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        placeholder="Москва, Санкт-Петербург и т.д."
+                      />
+                    }
+                  />
+
+                  <FormField
+                    label="Описание задачи *"
+                    error={errors.message}
+                    input={
+                      <Textarea
+                        name="message"
+                        rows={7}
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Опишите объект, текущую ситуацию, задачи по покрытию, интересующие услуги, сроки или ограничения."
+                        className={errors.message ? "border-red-500" : ""}
+                      />
+                    }
+                  />
 
                   <Button
                     type="submit"
@@ -368,12 +396,12 @@ export default function RequestPage() {
                     className="w-full bg-primary hover:bg-primary/90 text-white py-6 text-base font-semibold"
                   >
                     {isSubmitting ? "Отправка..." : "Отправить заявку"}
-                    {!isSubmitting && <ArrowRight className="w-4 h-4 ml-2" />}
+                    {!isSubmitting && <Send className="w-4 h-4 ml-2" />}
                   </Button>
 
                   <p className="text-xs text-muted-foreground leading-6">
-                    Отправляя заявку, вы передаёте контактные данные для связи по
-                    вашему проекту.
+                    Отправляя заявку, вы передаёте контактные данные для связи
+                    по вашему проекту.
                   </p>
                 </form>
               ) : (
@@ -386,8 +414,7 @@ export default function RequestPage() {
                       </h3>
                       <p className="text-sm text-green-700/90 dark:text-green-300 leading-7 mb-5">
                         Спасибо. Мы свяжемся с вами для уточнения параметров
-                        проекта, подбора оборудования и обсуждения дальнейших
-                        шагов.
+                        проекта, подбора решения и обсуждения дальнейших шагов.
                       </p>
 
                       <Link href="/">
@@ -405,6 +432,58 @@ export default function RequestPage() {
       </main>
 
       <FooterNew />
+    </div>
+  )
+}
+
+function ContactItem({
+  icon: Icon,
+  label,
+  value,
+  href,
+}: {
+  icon: typeof Phone
+  label: string
+  value: string
+  href?: string
+}) {
+  const content = (
+    <div className="flex items-start gap-4">
+      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+        <Icon className="w-5 h-5 text-primary" />
+      </div>
+      <div>
+        <p className="text-sm text-muted-foreground mb-1">{label}</p>
+        <p className="text-base font-medium text-foreground">{value}</p>
+      </div>
+    </div>
+  )
+
+  if (href) {
+    return (
+      <a href={href} className="block hover:opacity-85 transition-opacity">
+        {content}
+      </a>
+    )
+  }
+
+  return content
+}
+
+function FormField({
+  label,
+  input,
+  error,
+}: {
+  label: string
+  input: React.ReactNode
+  error?: string
+}) {
+  return (
+    <div className="space-y-2">
+      <Label>{label}</Label>
+      {input}
+      {error && <p className="text-sm text-red-500">{error}</p>}
     </div>
   )
 }
