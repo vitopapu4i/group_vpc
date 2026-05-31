@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { company } from "@/data/company"
 import ThemeToggle from "@/components/theme-toggle"
+import Image from "next/image"
 
 const navLinks = [
   { href: "/", label: "Главная" },

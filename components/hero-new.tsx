@@ -1,56 +1,139 @@
-import Link from "next/link"
+"use client"
+
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useTheme } from "@/components/theme-provider"
 
 export default function HeroNew() {
+  const { theme } = useTheme()
+
   return (
-    <section className="relative overflow-hidden bg-background border-b border-border">
+    <section className="relative overflow-hidden border-b border-border">
+      {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
         <Image
-          src="/telecom-network.jpg"
-          alt="Телекоммуникационные решения VPC"
+          src={theme === "dark" ? "/dark.png" : "/light.png"}
+          alt=""
           fill
           priority
-          className="object-cover opacity-20 dark:opacity-25"
+          className={`
+            object-contain
+            object-right
+            scale-110
+            select-none
+            transition-opacity duration-500
+            ${theme === "dark" ? "opacity-35" : "opacity-70"}
+          `}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/35" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+
+        {/* Затемнение только слева под текст */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent" />
+
+        {/* Мягкий градиент сверху и снизу */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/40" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-64px)] md:min-h-[720px] flex items-center">
-        <div className="max-w-3xl py-16 md:py-24">
-          <p className="inline-flex rounded-full border border-border bg-card/90 px-4 py-2 text-xs sm:text-sm text-muted-foreground mb-6">
-            Indoor coverage • DAS / ADAS • Радиопланирование
-          </p>
+      <div className="container relative z-10 mx-auto px-4">
+        <div className="flex min-h-[85vh] flex-col justify-center py-20 md:py-28">
+          {/* Badge */}
+          <div className="mb-8">
+            <div className="inline-flex items-center rounded-full border border-border bg-card/70 px-5 py-3 backdrop-blur-sm">
+              <span className="text-sm text-muted-foreground">
+                Indoor Coverage • DAS / ADAS • Telecom Engineering
+              </span>
+            </div>
+          </div>
 
-          <h1 className="text-[2.4rem] leading-[1.05] sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6">
-            Системы связи для сложных инфраструктурных объектов
-          </h1>
+          {/* Title */}
+          <div className="max-w-4xl">
+            <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              Телекоммуникационные решения для{" "}
+              <span className="text-primary">
+                сложных инфраструктурных объектов
+              </span>
+            </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-8 max-w-2xl mb-8">
-            Проектируем, поставляем и внедряем решения для аэропортов, метро,
-            стадионов, бизнес-центров, ЦОД и транспортной инфраструктуры.
-          </p>
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+              Group VPC проектирует и реализует системы связи для аэропортов,
+              метрополитена, стадионов, бизнес-центров, транспортной
+              инфраструктуры и крупных промышленных объектов.
+            </p>
+          </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Button
-              asChild
-              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-white px-7 py-6 text-base font-semibold"
+          {/* Buttons */}
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <Link
+              href="/request"
+              className="
+                inline-flex
+                items-center
+                justify-center
+                gap-2
+                rounded-xl
+                bg-primary
+                px-8
+                py-4
+                font-medium
+                text-primary-foreground
+                transition-all
+                hover:opacity-90
+              "
             >
-              <Link href="/request">
-                Обсудить проект
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
+              Оставить заявку
+              <ArrowRight className="h-5 w-5" />
+            </Link>
 
-            <Button
-              asChild
-              variant="outline"
-              className="w-full sm:w-auto bg-card/90 border-border hover:bg-muted px-7 py-6 text-base"
+            <Link
+              href="/projects"
+              className="
+                inline-flex
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-border
+                bg-card/70
+                px-8
+                py-4
+                font-medium
+                backdrop-blur-sm
+                transition-colors
+                hover:bg-accent
+              "
             >
-              <Link href="/projects">Смотреть проекты</Link>
-            </Button>
+              Смотреть проекты
+            </Link>
+          </div>
+
+          {/* Stats */}
+          <div className="mt-16 grid gap-4 md:grid-cols-3">
+            <div className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-sm">
+              <div className="font-semibold text-primary">
+                Проектирование
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Разработка систем связи любой сложности
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-sm">
+              <div className="font-semibold text-primary">
+                DAS / ADAS
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Современные распределённые антенные системы
+              </p>
+            </div>
+
+            <div className="rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-sm">
+              <div className="font-semibold text-primary">
+                Реализация
+              </div>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Полный цикл внедрения и сопровождения
+              </p>
+            </div>
           </div>
         </div>
       </div>

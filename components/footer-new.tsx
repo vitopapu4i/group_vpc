@@ -149,7 +149,7 @@ export default function FooterNew() {
               target="_blank"
               className="hover:text-foreground"
             >
-              Your Studio
+            Victor Bannov
             </a>
           </div>
         </div>
