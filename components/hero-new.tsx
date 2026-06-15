@@ -49,7 +49,7 @@ export default function HeroNew() {
           <div className="max-w-4xl">
             <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Телекоммуникационные решения для
-              <br className="md:hidden" />{" "}
+              <br />
               <span className="text-primary">
                 сложных инфраструктурных объектов
               </span>
