@@ -47,13 +47,13 @@ export default function HeroNew() {
 
           {/* Title */}
           <div className="max-w-4xl">
-            <h1 className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="text-[28px] font-bold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Телекоммуникационные решения для
               <br />
               <span className="text-primary">
                 сложных инфраструктурных объектов
               </span>
-            </h1>
+            </h1 >
 
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               Group VPC проектирует и реализует системы связи для аэропортов,
